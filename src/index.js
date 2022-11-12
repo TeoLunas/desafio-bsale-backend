@@ -4,7 +4,7 @@ const cors = require('cors');
 
 // Importaciones de Archivos Propios
 const routerApi = require('./routes/index');
-const config = require('./config/config');
+const {config} = require('./config/config');
 const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/errorHandler')
 
 const app = express();
