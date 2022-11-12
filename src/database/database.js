@@ -1,5 +1,6 @@
 const { createPool } = require('mysql2/promise');
 const {config} = require('../config/config');
+require("dotenv").config();
 
 // const pool = createPool({
 //     host: 'mdb-test.c6vunyturrl6.us-west-1.rds.amazonaws.com',
