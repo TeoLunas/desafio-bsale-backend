@@ -1,13 +1,22 @@
 const { createPool } = require('mysql2/promise');
 const config = require('../config/config');
+const config = require('../config/config')
+
+// const pool = createPool({
+//     host: 'mdb-test.c6vunyturrl6.us-west-1.rds.amazonaws.com',
+//     user: 'bsale_test',
+//     password: 'bsale_test',
+//     port: 3306,
+//     database: 'bsale_test'
+// });
 
 const pool = createPool({
-    host: 'mdb-test.c6vunyturrl6.us-west-1.rds.amazonaws.com',
-    user: 'bsale_test',
-    password: 'bsale_test',
+    host: config.dbHost,
+    user: config.dbUser,
+    password: config.dbPassword,
     port: 3306,
-    database: 'bsale_test'
-});
+    database: config.dbName
+})
 
 // Products querys
 const getAllProductsQuery = async (offset, row_count) => {
