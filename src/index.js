@@ -6,7 +6,7 @@ const cors = require('cors');
 const routerApi = require('./routes/index');
 const {config} = require('./config/config');
 const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/errorHandler')
-
+require("dotenv").config();
 const app = express();
 
 //Definicion de puerto
