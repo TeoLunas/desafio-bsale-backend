@@ -1,6 +1,5 @@
 const { createPool } = require('mysql2/promise');
-const config = require('../config/config');
-const config = require('../config/config')
+const {config} = require('../config/config');
 
 // const pool = createPool({
 //     host: 'mdb-test.c6vunyturrl6.us-west-1.rds.amazonaws.com',
@@ -16,7 +15,7 @@ const pool = createPool({
     password: config.dbPassword,
     port: 3306,
     database: config.dbName
-})
+});
 
 // Products querys
 const getAllProductsQuery = async (offset, row_count) => {
