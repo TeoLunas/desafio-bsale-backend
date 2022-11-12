@@ -13,7 +13,6 @@ const pool = createPool({
     host: config.dbHost,
     user: config.dbUser,
     password: config.dbPassword,
-    port: 3306,
     database: config.dbName
 });
 
