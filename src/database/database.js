@@ -2,28 +2,47 @@ const { createPool } = require('mysql2/promise');
 const config = require('../config/config');
 
 const pool = createPool({
-    host: '',
-    user: '',
-    password: '',
+    host: 'mdb-test.c6vunyturrl6.us-west-1.rds.amazonaws.com',
+    user: 'bsale_test',
+    password: 'bsale_test',
     port: 3306,
-    database: ''
+    database: 'bsale_test'
 });
 
+// Products querys
 const getAllProductsQuery = async (offset, row_count) => {
     // const [rows, fields] = await pool.execute('SELECT * FROM product LIMIT ?, ?', [offset,row_count]);
-    const [rows, fields] = await pool.execute('SELECT * FROM product LIMIT ?, ?', [0,2]);
+    const [rows, fields] = await pool.execute('SELECT * FROM product LIMIT ?, ?', [0, 10]);
     return rows
 };
 
-const getOneProductQuery = async(id) => {
+const getOneProductQuery = async (id) => {
     const [rows] = await pool.execute('SELECT * FROM product WHERE id = ?', [id]);
     return rows;
 };
 
-const getOneProductByNameQuery = async(productName) => {
-    const [ rows ] = await pool.execute('SELECT * FROM product WHERE name LIKE ?', ['%' + productName + '%']);
+const getOneProductByNameQuery = async (productName) => {
+    const [rows] = await pool.execute('SELECT * FROM product WHERE name LIKE ?', ['%' + productName + '%']);
     return rows
-}
+};
+
+// Caegory Querys
+
+const getCategories = async () => {
+    const [rows] = await pool.execute('SELECT * FROM category');
+    return rows;
+};
+
+const getCategoryProducts = async (id) => {
+    const [rows] = await pool.execute('SELECT * FROM product WHERE category = ?', [id]);
+    return rows
+};
 
 
-module.exports = { getAllProductsQuery, getOneProductQuery, getOneProductByNameQuery };
+module.exports = {
+    getAllProductsQuery,
+    getOneProductQuery,
+    getOneProductByNameQuery,
+    getCategories,
+    getCategoryProducts
+};

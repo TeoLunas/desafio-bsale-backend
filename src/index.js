@@ -1,5 +1,6 @@
 // Importacion de paquetes externos
 const express = require('express');
+const cors = require('cors');
 
 // Importaciones de Archivos Propios
 const routerApi = require('./routes/index');
@@ -12,6 +13,7 @@ const app = express();
 const port = config.port || 3000;
 
 //Middleware
+app.use(cors());
 app.use(express.json());
 
 // Routing
