@@ -3,14 +3,6 @@ const {config} = require('../config/config')
 
 
 // const pool = createPool({
-//     host: 'mdb-test.c6vunyturrl6.us-west-1.rds.amazonaws.com',
-//     user: 'bsale_test',
-//     password: 'bsale_test',
-//     port: 3306,
-//     database: 'bsale_test'
-// });
-
-// const pool = createPool({
 //     host: process.env.DB_HOST,
 //     user: process.env.DB_USER,
 //     password: process.env.DB_PASSWORD,
