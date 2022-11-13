@@ -2,8 +2,8 @@ const productService = require('../services/productService')
 
 const getAllProducts = async(req, res, next) => {
     try {
-        const { page, limit } = req.params;
-        const products = await productService.getAllProducts();
+        const { page } = 0 || req.query;
+        const products = await productService.getAllProducts(page);
         res.json(products)
     } catch (error) {
         next(error)
@@ -18,7 +18,7 @@ const getOneProductById = async(req, res) => {
 
 const searchProductByName = async(req, res, next) => {
     try {
-        const { productName } = req.params;
+        const { productName } = req.query;
         const product = await productService.getOneProductByName(productName);
         res.status(200).json(product);
     } catch (error) {

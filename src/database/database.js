@@ -1,7 +1,6 @@
 const { createPool } = require('mysql2/promise');
 const {config} = require('../config/config')
 
-
 // const pool = createPool({
 //     host: process.env.DB_HOST,
 //     user: process.env.DB_USER,
@@ -46,11 +45,4 @@ const getCategoryProducts = async (id) => {
 };
 
 
-module.exports = {
-    pool,
-    getAllProductsQuery,
-    getOneProductQuery,
-    getOneProductByNameQuery,
-    getCategories,
-    getCategoryProducts
-};
+module.exports = pool

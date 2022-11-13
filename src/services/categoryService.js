@@ -1,12 +1,12 @@
 const boom = require('@hapi/boom');
-const { getCategories, getCategoryProducts } = require('../database/database');
+const pool = require('../database/database');
 
 /**
  * Funcion para obtener todas las categorias
  */
 const getAllCategories =  async () => {
-    const categories = await getCategories();
-    return categories;
+    const [rows] = await pool.execute('SELECT * FROM category');
+    return rows;
 };
 
 /**

@@ -1,10 +1,21 @@
 const boom = require('@hapi/boom');
-const { getAllProductsQuery, getOneProductQuery, getOneProductByNameQuery } = require('../database/database')
+const pool = require('../database/database')
 
-
-const getAllProducts = async () => {
-        const products = await getAllProductsQuery();
-        return products;
+const getAllProducts = async (page) => {
+        const query = 'SELECT * FROM product';
+        const queryCount = 'SELECT COUNT(name)AS cantidad FROM product'
+        const PAGE_SIZE = 2;
+        const [ row ] = await pool.execute(queryCount);
+        const totalPages = row[0].cantidad / PAGE_SIZE;
+        // const products = await getAllProductsQuery();
+        // return products
+        // const [rows, fields] = await pool.execute(query, [page, PAGE_SIZE]);
+        const [rows, fields] = await pool.execute(query);
+        return {
+            totalPages,
+            page: 1,
+            rows,
+        };
 };
 
 const getOneProductById = async (id) => {
@@ -18,11 +29,11 @@ const getOneProductById = async (id) => {
 }
 
 const getOneProductByName = async (productName) => {
-    const product = await getOneProductByNameQuery(productName);
-    if (product.length === 0) {
+    const [rows] = await pool.execute('SELECT * FROM product WHERE name LIKE ?', ['%' + productName + '%']);
+    if (rows.length === 0) {
         throw boom.notFound('No existen productos');
     }
-    return product;
+    return rows;
 }
 
 module.exports = {
