@@ -1,4 +1,6 @@
 const { createPool } = require('mysql2/promise');
+const {config} = require('../config/config')
+
 
 // const pool = createPool({
 //     host: 'mdb-test.c6vunyturrl6.us-west-1.rds.amazonaws.com',
@@ -8,11 +10,18 @@ const { createPool } = require('mysql2/promise');
 //     database: 'bsale_test'
 // });
 
+// const pool = createPool({
+//     host: process.env.DB_HOST,
+//     user: process.env.DB_USER,
+//     password: process.env.DB_PASSWORD,
+//     database: process.env.DB_NAME
+// });
+
 const pool = createPool({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
+    host: config.dbHost,
+    user: config.dbUser,
+    password: config.dbPassword,
+    database: config.dbName
 });
 
 // Products querys
