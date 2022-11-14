@@ -5,7 +5,7 @@ const swaggerUi = require("swagger-ui-express");
 // Basic Meta Informations about our API
 const options = {
     definition: {
-        openapi: "3.0.0",
+        openapi: "3.0.3",
         info: { title: "Bsale Desafio", version: "1.0.0" },
     },
     apis: ["./src/routes/categoryRouter.js", "./src/routes/productRoutes.js"],

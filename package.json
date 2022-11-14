@@ -23,6 +23,6 @@
     "swagger-ui-express": "^4.6.0"
   },
   "engines": {
-    "node": "16.18.0"
+    "node": "16.15.0"
   }
 }
