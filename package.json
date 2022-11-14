@@ -20,9 +20,9 @@
     "mysql2": "^2.3.3",
     "promise-mysql": "^5.2.0",
     "swagger-jsdoc": "^6.2.5",
-    "swagger-ui-express": "^4.5.0"
+    "swagger-ui-express": "^4.6.0"
   },
   "engines": {
-    "node": "16.15.0"
+    "node": "v16.18.0"
   }
 }
