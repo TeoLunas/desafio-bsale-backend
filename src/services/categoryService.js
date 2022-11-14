@@ -5,7 +5,8 @@ const pool = require('../database/database');
  * Funcion para obtener todas las categorias
  */
 const getAllCategories =  async () => {
-    const [rows] = await pool.execute('SELECT * FROM category');
+    const query = 'SELECT * FROM category';
+    const [rows] = await pool.execute(query);
     return rows;
 };
 
@@ -14,7 +15,8 @@ const getAllCategories =  async () => {
  * Parametro id, es el id de la categoria
  * */
 const getOneCategorie = async(id) => {
-    const [rows] = await pool.execute('SELECT * FROM product WHERE category = ?', [id]);
+    const query = 'SELECT * FROM product WHERE category = ?'
+    const [rows] = await pool.execute(query, [id]);
     if(rows.length === 0){
         throw boom.notFound('No existe esa categoria')
     }
