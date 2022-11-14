@@ -28,6 +28,18 @@ const router = express.Router();
  *         category:
  *           type: integer
  *           example: 1 
+ *     ProductNotFound:
+ *       type: object
+ *       properties:
+ *         statusCode: 
+ *           type: integer
+ *           example: 404
+ *         error: 
+ *           type: string
+ *           example: Not Found 
+ *         message:
+ *           type: string
+ *           example: No existen productos
  */
 router.get('/', productController.getAllProducts);
 /**
@@ -36,6 +48,12 @@ router.get('/', productController.getAllProducts);
  *   get:
  *     tags:
  *       - Products
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *          type: integer
+ *         description: Numero de la pagina, este parametro es opcional, ya que por defecto muestra la pagina 1
  *     responses:
  *       200:
  *         description: OK
@@ -56,12 +74,16 @@ router.get('/', productController.getAllProducts);
 router.get('/search', productController.searchProductByName)
 /**
  * @openapi
- * /api/v1/products/search/?productName=cer:
+ * /api/v1/products/search/?productName={productName}:
  *   get:
  *     tags:
  *       - Products
  *     parameters:
- *       - in: path
+ *       - in: query
+ *         name: productName
+ *         schema:
+ *          type: string
+ *         description: Nombre del producto o parte del nombre
  *     responses:
  *       200:
  *         description: OK
@@ -77,6 +99,20 @@ router.get('/search', productController.searchProductByName)
  *                   type: array 
  *                   items: 
  *                     $ref: "#/components/schemas/Product"
+ *       400:
+ *         description: No se encontraron coincidencias
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: OK
+ *                 data:
+ *                   type: array 
+ *                   items: 
+ *                     $ref: "#/components/schemas/ProductNotFound"
  *                      
  */
 
