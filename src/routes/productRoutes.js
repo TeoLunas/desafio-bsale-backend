@@ -29,6 +29,7 @@ const router = express.Router();
  *           type: integer
  *           example: 1 
  */
+router.get('/', productController.getAllProducts);
 /**
  * @openapi
  * /api/v1/products:
@@ -52,9 +53,29 @@ const router = express.Router();
  *                     $ref: "#/components/schemas/Product"
  *                      
  */
-
-
-router.get('/', productController.getAllProducts);
 router.get('/search', productController.searchProductByName)
+/**
+ * @openapi
+ * /api/v1/products:
+ *   get:
+ *     tags:
+ *       - Products
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: OK
+ *                 data:
+ *                   type: array 
+ *                   items: 
+ *                     $ref: "#/components/schemas/Product"
+ *                      
+ */
 
 module.exports = router;
