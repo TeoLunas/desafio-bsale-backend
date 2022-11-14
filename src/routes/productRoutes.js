@@ -56,10 +56,12 @@ router.get('/', productController.getAllProducts);
 router.get('/search', productController.searchProductByName)
 /**
  * @openapi
- * /api/v1/products:
+ * /api/v1/products/search/?productName=cer:
  *   get:
  *     tags:
  *       - Products
+ *     parameters:
+ *       - in: path
  *     responses:
  *       200:
  *         description: OK
