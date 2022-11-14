@@ -14,11 +14,11 @@ const getAllCategories =  async () => {
  * Parametro id, es el id de la categoria
  * */
 const getOneCategorie = async(id) => {
-    const category = await getCategoryProducts(id);
-    if(category.length === 0){
+    const [rows] = await pool.execute('SELECT * FROM product WHERE category = ?', [id]);
+    if(rows.length === 0){
         throw boom.notFound('No existe esa categoria')
     }
-    return category;
+    return rows;
 }
 
 module.exports = {
